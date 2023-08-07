@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from 'react-redux';
+import store from './redux/store.js';
+import Body from './components/Body.js';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Icon from './assets/Icon.js'
+import First from './components/First.js';
+import useScroll from './utils/useScroll.js';
+import Footer from './components/Footer.js';
 
 function App() {
+  const show= useScroll();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Provider store={store}>
+    <div>
+      <Body/>
+      {
+        show?  <Footer/>: null
+     }
     </div>
+    </Provider>
   );
 }
 
